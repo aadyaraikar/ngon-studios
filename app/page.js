@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -47,22 +48,22 @@ export default function Home() {
       <nav className="absolute top-0 left-0 w-full px-12 py-8 flex justify-between items-center">
         {/*logo grp*/}
         <div className="flex items-center gap-3">
-            {/* Simple CSS Polygon for the geometric logo in your image */}
-            <div className="w-8 h-8 bg-white" style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}></div>
-            <span className="font-bold text-2xl tracking-tighter uppercase">NGON Studios</span>
+            {/* Logo Image */}
+            <Image src="/images/logo white.png" alt="NGON Studios Logo" width={32} height={32} className="object-contain" />
+            <span className="text-3xl tracking-tighter uppercase font-mono mt-1">NGON Studios</span>
           </div>
 
           {/* Links */}
-          <div className="flex gap-8 font-bold text-lg tracking-wide uppercase">
-            <a href="#projects" className="hover:text-zinc-400 transition-colors cursor-pointer">Project</a>
-            <a href="#about" className="hover:text-zinc-400 transition-colors cursor-pointer">About</a>
-            <a href="#contact" className="hover:text-zinc-400 transition-colors cursor-pointer">Contact Us</a>
+          <div className="flex gap-8 text-xl tracking-wide uppercase font-mono">
+            <a href="/projects" className="hover:text-zinc-400 transition-colors cursor-pointer">Project</a>
+            <a href="/about" className="hover:text-zinc-400 transition-colors cursor-pointer">About</a>
+            <a href="/contact" className="hover:text-zinc-400 transition-colors cursor-pointer">Contact Us</a>
           </div>
       </nav>
 
       {/* -- MAIN TEXT -- */}
         <div className="text-center px-4">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 tracking-tight uppercase">
+          <h1 className="text-6xl md:text-8xl mb-4 tracking-tight uppercase font-mono font-normal">
             We Are NGON Studios
           </h1>
           <p className="text-xl md:text-2xl font-medium text-zinc-200">
