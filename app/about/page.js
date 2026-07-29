@@ -35,14 +35,6 @@ export default function About() {
 
   return (
     <main className="min-h-screen bg-black text-white relative">
-      {/* Back to Home Button */}
-      <Link href="/#main-content" className="group fixed top-10 left-10 z-[100] p-2">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-zinc-400 group-hover:text-white transition-colors duration-300">
-          <line x1="4" y1="6" x2="20" y2="6"></line>
-          <line x1="4" y1="12" x2="20" y2="12"></line>
-          <line x1="4" y1="18" x2="20" y2="18"></line>
-        </svg>
-      </Link>
       {/* Navigation spacer */}
       <div className="h-24 md:h-32 w-full"></div>
       

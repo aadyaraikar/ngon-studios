@@ -1,4 +1,6 @@
 import { DM_Sans, Teko } from "next/font/google";
+import Protection from "@/components/Protection";
+import Navbar from "@/components/Navbar";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -22,7 +24,12 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${dmSans.variable} ${teko.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col select-none">
+        <Protection />
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
+

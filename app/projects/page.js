@@ -43,14 +43,6 @@ export default function Projects() {
 
   return (
     <main className="min-h-screen bg-zinc-950 text-white pt-24 px-6 md:px-12 relative">
-      {/* Back to Home Button */}
-      <Link href="/#main-content" className="group fixed top-10 left-10 z-[100] p-2">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-zinc-400 group-hover:text-white transition-colors duration-300">
-          <line x1="4" y1="6" x2="20" y2="6"></line>
-          <line x1="4" y1="12" x2="20" y2="12"></line>
-          <line x1="4" y1="18" x2="20" y2="18"></line>
-        </svg>
-      </Link>
       
       {/* Header section */}
       <div className="max-w-7xl mx-auto flex flex-col items-center text-center mb-16">

@@ -4,6 +4,8 @@ import { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,7 +25,19 @@ export default function Home() {
         pinSpacing: false, //allows next section to slide over
       });
 
-      // 2. Hero Background Scrub (Smooth Overlay Fade-in)
+      // 2. Navbar Reveal Animation
+      gsap.to('.global-navbar', {
+        y: 0, // Slides it down into view
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: '#main-content',
+          start: "top 5%", // Triggers right as the dark wrapper hits the top of the screen
+          once: true, // Plays once and stays visible permanently
+        }
+      });
+
+      // 3. Hero Background Scrub (Smooth Overlay Fade-in)
       gsap.set('.hero-section', { opacity: 0 });
       gsap.to('.hero-section', {
         opacity: 1,
@@ -35,7 +49,7 @@ export default function Home() {
         }
       });
 
-      // 3. Hero Timeline
+      // 4. Hero Timeline
       const heroTl = gsap.timeline({
         scrollTrigger: {
           trigger: '.hero-section',
@@ -51,33 +65,40 @@ export default function Home() {
         ease: 'power3.out'
       });
 
-      // 4. Upcoming Projects Title Animation
-      gsap.to('.upcoming-title-reveal', {
-        y: 0,
-        duration: 1.2,
-        ease: 'expo.out',
+      // 5. Upcoming Projects Title Animation
+      gsap.from('.upcoming-title-fade', {
+        opacity: 0,
+        y: 80, // Increase visual travel distance (up from 20)
+        scale: 0.7, // Add a dramatic scale-up from 70% size
+        transformOrigin: "center center", // Scale from the middle
+        duration: 1.8, // Slightly longer so the user sees the action
+        ease: 'expo.out', // A sharp, punchy ease-out that is highly visible
         scrollTrigger: {
-          trigger: '.upcoming-title-reveal',
-          start: 'top 85%',
+          trigger: '.upcoming-title-fade',
+          start: 'top 85%', // Trigger as it enters the lower part of the viewport
+          once: true
         }
       });
 
-      // 5. Projects Animation
+      // 6. Projects Animation
       gsap.utils.toArray('.project-card').forEach((card) => {
         gsap.fromTo(card,
-          { y: 150, opacity: 0, scale: 0.8, transformOrigin: "bottom center" },
+          {
+            y: 100,
+            opacity: 0,
+            scale: 0.9,
+            transformOrigin: "bottom center"
+          },
           {
             y: 0,
             opacity: 1,
             scale: 1,
             duration: 1.2,
-            ease: "power3.out",
+            ease: "expo.out",
             scrollTrigger: {
               trigger: card,
-              start: "top 90%",
-              end: "top 40%",
-              scrub: false,
-              toggleActions: "play none none reverse"
+              start: "top 85%", // Triggers uniformly when the top of each card hits 85% of the viewport
+              once: true // Ensures it plays exactly once and stays visible
             }
           }
         );
@@ -100,7 +121,10 @@ export default function Home() {
   }, []);
 
   return (
-    <main ref={mainRef} className="relative bg-zinc-950 text-white min-h-[200vh]">
+    <main ref={mainRef} className="relative bg-zinc-950 text-white min-h-[200vh] snap-y snap-mandatory">
+      {/* Navigation Bar */}
+      <Navbar />
+
       {/*bg video*/}
       <section
         ref={videoContainerRef}
@@ -116,30 +140,13 @@ export default function Home() {
 
 
       {/*hero section - space to see the video*/}
-      <section className="h-screen w-full relative z-10 bg-transparent">
+      <section className="h-screen w-full relative z-10 bg-transparent snap-start">
       </section>
 
       {/* Content Wrapper */}
       <div id="main-content" className="relative w-full z-20 bg-[linear-gradient(to_bottom,transparent,rgba(0,0,0,0.8)_80vh,#000_100vh,#000_100%)]">
-        {/* Navigation Bar */}
-        <nav className="hero-reveal sticky top-0 left-0 w-full px-12 py-8 flex justify-between items-center z-[100] bg-transparent">
-          {/* logo grp */}
-          <div className="flex items-center gap-3">
-            {/* Logo Image */}
-            <Image src="/images/logo white.png" alt="NGON Studios Logo" width={32} height={32} className="object-contain w-auto h-8" />
-            <span className="text-3xl md:text-4xl tracking-tighter uppercase font-mono mt-1">NGON Studios</span>
-          </div>
-
-          {/* Links */}
-          <div className="flex gap-8 text-3xl md:text-4xl tracking-wide uppercase font-mono">
-            <a href="/projects" className="hover:text-zinc-400 transition-colors cursor-pointer">Projects</a>
-            <a href="/about" className="hover:text-zinc-400 transition-colors cursor-pointer">About</a>
-            <a href="/contact" className="hover:text-zinc-400 transition-colors cursor-pointer">Contact Us</a>
-          </div>
-        </nav>
-
         {/* hero section */}
-        <section className="hero-section relative z-20 h-screen w-full flex flex-col items-center justify-center pt-48 bg-transparent">
+        <section id="about-studio" className="hero-section relative z-20 h-screen w-full flex flex-col items-center justify-center pt-48 bg-transparent snap-start">
           {/* -- MAIN TEXT -- */}
           <div className="text-center px-4 -mt-24">
             <h1 className="hero-reveal text-6xl md:text-8xl mb-4 tracking-tight uppercase font-mono font-normal">
@@ -159,13 +166,11 @@ export default function Home() {
         </section>
 
         {/* upcoming projects */}
-        <section className="projects-section relative z-30 bg-black w-full py-32 px-6 md:px-16 flex flex-col items-center">
-          {/* Heading Container */}
-        <div className="overflow-hidden pb-4 mb-20">
-          <h2 className="upcoming-title-reveal text-4xl md:text-5xl font-mono uppercase tracking-widest text-center text-white translate-y-[120%]">
+        <section className="projects-section relative z-30 bg-black w-full min-h-screen py-32 px-6 md:px-16 flex flex-col items-center snap-start">
+          {/* Heading */}
+          <h2 className="upcoming-title-fade mb-16 text-5xl md:text-7xl font-mono uppercase tracking-tighter text-center text-white">
             Upcoming Projects
           </h2>
-        </div>
 
           <div className="project-card opacity-0 translate-y-24 w-full flex flex-col items-center">
             {/* THE IMAGE CONTAINER */}
@@ -216,5 +221,8 @@ export default function Home() {
           </div>
         </section>
       </div>
-    </main>);
+
+      <Footer />
+    </main>
+  );
 }
