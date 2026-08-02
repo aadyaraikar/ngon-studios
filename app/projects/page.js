@@ -42,7 +42,7 @@ export default function Projects() {
   }, [selectedProject]);
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-white pt-24 px-6 md:px-12 relative">
+    <main className="min-h-screen bg-black text-white pt-24 px-6 md:px-12 relative no-scrollbar">
       
       {/* Header section */}
       <div className="max-w-7xl mx-auto flex flex-col items-center text-center mb-16">
@@ -57,29 +57,27 @@ export default function Projects() {
       {/* Grid section */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {projectsData.map((project) => (
-          <motion.div 
+          <div 
             key={project.id}
-            layoutId={`card-${project.id}`}
             onClick={() => setSelectedId(project.id)}
             className="relative overflow-hidden rounded-xl border border-zinc-800 group cursor-pointer aspect-[4/3]"
           >
-            <motion.img 
-              layoutId={`project-image-${project.id}`}
+            <img 
               src={project.imagePath} 
               alt={project.title}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
             />
             
             {/* Text Overlay Layout */}
             <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/90 via-black/60 to-transparent flex flex-col justify-end z-10">
-              <motion.h2 layoutId={`title-${project.id}`} className="text-3xl font-bold text-white tracking-wide uppercase">
+              <h2 className="text-3xl font-bold text-white tracking-wide uppercase">
                 {project.title}
-              </motion.h2>
-              <motion.p layoutId={`desc-${project.id}`} className="text-sm text-zinc-300 italic mt-1">
+              </h2>
+              <p className="text-sm text-zinc-300 italic mt-1">
                 {project.shortDesc}
-              </motion.p>
+              </p>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
 
@@ -87,15 +85,16 @@ export default function Projects() {
       <AnimatePresence>
         {selectedProject && (
           <motion.div 
-            className="fixed inset-0 z-50 bg-zinc-950 overflow-y-auto"
+            className="fixed inset-0 z-[200] bg-black overflow-y-auto no-scrollbar"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
           >
             {/* Close Button */}
             <button 
               onClick={() => setSelectedId(null)}
-              className="fixed top-8 right-8 z-50 w-12 h-12 bg-black/50 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-colors"
+              className="fixed top-8 right-8 z-[210] w-12 h-12 bg-black/50 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-colors"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -106,18 +105,14 @@ export default function Projects() {
             <div className="w-full min-h-screen pb-24">
               {/* Modal Header */}
               <div className="pt-24 pb-12 flex justify-center text-center">
-                <motion.h1 
-                  layoutId={`title-${selectedProject.id}`} 
-                  className="text-5xl md:text-8xl tracking-tighter uppercase font-mono font-normal"
-                >
+                <h1 className="text-5xl md:text-8xl tracking-tighter uppercase font-mono font-normal">
                   {selectedProject.title}
-                </motion.h1>
+                </h1>
               </div>
 
-              {/* Huge Hero Image using identical layoutId to bridge with card */}
+              {/* Huge Hero Image */}
               <div className="w-full max-w-7xl mx-auto px-6 md:px-12 aspect-video md:aspect-[21/9]">
-                <motion.img 
-                  layoutId={`project-image-${selectedProject.id}`}
+                <img 
                   src={selectedProject.imagePath} 
                   alt={selectedProject.title}
                   className="w-full h-full object-cover shadow-2xl"
