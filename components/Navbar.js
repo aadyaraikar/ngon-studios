@@ -7,6 +7,14 @@ import { usePathname } from "next/navigation";
 export default function Navbar() {
   const pathname = usePathname();
 
+  const getLinkClass = (path) => {
+    const isActive = pathname === path;
+    if (isActive) {
+      return "text-zinc-500 pointer-events-none select-none";
+    }
+    return "text-white transition-colors cursor-pointer";
+  };
+
   return (
     <nav
       className={`fixed top-0 left-0 w-full px-12 py-8 flex justify-between items-center z-[100] bg-transparent ${
@@ -31,19 +39,19 @@ export default function Navbar() {
       <div className="flex gap-8 text-3xl md:text-4xl tracking-wide uppercase font-mono">
         <Link
           href="/projects"
-          className="hover:text-zinc-400 transition-colors cursor-pointer"
+          className={getLinkClass("/projects")}
         >
           Projects
         </Link>
         <Link
           href="/about"
-          className="hover:text-zinc-400 transition-colors cursor-pointer"
+          className={getLinkClass("/about")}
         >
           About
         </Link>
         <Link
           href="/contact"
-          className="hover:text-zinc-400 transition-colors cursor-pointer"
+          className={getLinkClass("/contact")}
         >
           Contact Us
         </Link>

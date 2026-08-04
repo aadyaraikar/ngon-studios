@@ -34,3 +34,31 @@ body {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+/* Global White Glow on Hover for Clickable Elements (excluding .no-glow) */
+a:not(.no-glow),
+button:not(.no-glow),
+[role="button"]:not(.no-glow),
+.cursor-pointer:not(.no-glow),
+input[type="submit"]:not(.no-glow),
+input[type="button"]:not(.no-glow) {
+  transition: text-shadow 0.25s ease, opacity 0.25s ease;
+}
+
+a:not(.no-glow):hover,
+button:not(.no-glow):hover,
+[role="button"]:not(.no-glow):hover,
+.cursor-pointer:not(.no-glow):hover,
+input[type="submit"]:not(.no-glow):hover,
+input[type="button"]:not(.no-glow):hover {
+  text-shadow: 0 0 7px rgba(255, 255, 255, 0.55);
+}
+
+/* Disable glow for specific UI buttons */
+.no-glow,
+.no-glow:hover {
+  text-shadow: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+}
+
