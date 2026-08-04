@@ -96,154 +96,146 @@ export default function Contact() {
   return (
     <main className="min-h-screen bg-black text-white relative">
       {/* Navigation spacer */}
-      <div className="h-24 md:h-32 w-full"></div>
+      <div className="h-20 md:h-28 w-full"></div>
       
-      <section ref={sectionRef} className="w-full py-32">
-        <div className="max-w-4xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-8 mb-24">
+      <section ref={sectionRef} className="w-full py-16 md:py-24">
+        <div className="max-w-6xl mx-auto px-6">
           
-          {/* Socials Group */}
-          <div className="flex flex-col space-y-6">
-            <h2 className="contact-reveal-item text-3xl md:text-4xl text-white font-mono tracking-tight uppercase font-normal">
-              Socials
-            </h2>
-            <ul className="flex flex-col space-y-4">
-              <li className="contact-reveal-item">
-                <a href="#" className="text-zinc-400 italic text-lg font-sans hover:text-white transition-colors">
-                  Instagram
-                </a>
-              </li>
-              <li className="contact-reveal-item">
-                <a href="#" className="text-zinc-400 italic text-lg font-sans hover:text-white transition-colors">
-                  Twitter/X
-                </a>
-              </li>
-              <li className="contact-reveal-item">
-                <a href="#" className="text-zinc-400 italic text-lg font-sans hover:text-white transition-colors">
-                  LinkedIn
-                </a>
-              </li>
-              <li className="contact-reveal-item">
-                <a href="#" className="text-zinc-400 italic text-lg font-sans hover:text-white transition-colors">
-                  Behance
-                </a>
-              </li>
-            </ul>
+          {/* Hero Title */}
+          <div className="text-center mb-16 md:mb-20">
+            <h1 className="contact-reveal-item text-4xl md:text-6xl text-white font-mono tracking-tight font-normal">
+              We would like to hear from you.
+            </h1>
           </div>
 
-          {/* Reach out to Us Group */}
-          <div className="flex flex-col space-y-6">
-            <h2 className="contact-reveal-item text-3xl md:text-4xl text-white font-mono tracking-tight uppercase font-normal">
-              Reach out to Us
-            </h2>
-            <ul className="flex flex-col space-y-4">
-              <li className="contact-reveal-item">
-                <a href="mailto:hello@ngonstudios.com" className="text-zinc-400 italic text-lg font-sans hover:text-white transition-colors">
-                  hello@ngonstudios.com
-                </a>
-              </li>
-              <li className="contact-reveal-item">
-                <a href="tel:+1234567890" className="text-zinc-400 italic text-lg font-sans hover:text-white transition-colors">
-                  +1 (234) 567-890
-                </a>
-              </li>
-              <li className="contact-reveal-item">
-                <p className="text-zinc-400 italic text-lg font-sans">
-                  Los Angeles, CA
-                </p>
-              </li>
-            </ul>
-          </div>
-        </div>
+          {/* 2-Column Section: Socials (Left) & Send US a message (Right) */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
+            
+            {/* Left Column: Socials */}
+            <div className="md:col-span-5 flex flex-col space-y-8 pt-2">
+              <h2 className="contact-reveal-item text-3xl md:text-4xl text-white font-mono tracking-tight font-normal">
+                Socials
+              </h2>
+              <ul className="flex flex-col space-y-4">
+                <li className="contact-reveal-item">
+                  <a href="#" className="text-zinc-400 italic text-xl md:text-2xl font-sans hover:text-white transition-colors">
+                    Instagram
+                  </a>
+                </li>
+                <li className="contact-reveal-item">
+                  <a href="#" className="text-zinc-400 italic text-xl md:text-2xl font-sans hover:text-white transition-colors">
+                    Twitter/X
+                  </a>
+                </li>
+                <li className="contact-reveal-item">
+                  <a href="#" className="text-zinc-400 italic text-xl md:text-2xl font-sans hover:text-white transition-colors">
+                    LinkedIn
+                  </a>
+                </li>
+                <li className="contact-reveal-item">
+                  <a href="#" className="text-zinc-400 italic text-xl md:text-2xl font-sans hover:text-white transition-colors">
+                    Behance
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-        {/* Contact Form Container Div */}
-        <div ref={formContainerRef} className="max-w-2xl mx-auto px-6">
-          <div className="bg-zinc-900/50 p-8 rounded-2xl border border-zinc-800">
-            {isSuccess ? (
-              <div className="text-center py-12">
-                <h3 className="text-3xl font-mono uppercase tracking-widest text-white mb-4">
-                  Thank You
-                </h3>
-                <p className="text-zinc-400 text-lg font-sans">
-                  Thank you for reaching out. We will get back to you shortly.
-                </p>
+            {/* Right Column: Send US a message + Form */}
+            <div ref={formContainerRef} className="md:col-span-7 flex flex-col space-y-6">
+              <h2 className="text-3xl md:text-4xl text-white font-mono tracking-tight font-normal">
+                Send US a message
+              </h2>
+
+              <div className="bg-zinc-900/40 p-8 rounded-2xl border border-zinc-800/80 shadow-2xl">
+                {isSuccess ? (
+                  <div className="text-center py-12">
+                    <h3 className="text-3xl font-mono uppercase tracking-widest text-white mb-4">
+                      Thank You
+                    </h3>
+                    <p className="text-zinc-400 text-lg font-sans">
+                      Thank you for reaching out. We will get back to you shortly.
+                    </p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Row 1: First name & Last name */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label htmlFor="firstName" className="text-sm text-zinc-400 mb-1 block font-sans">
+                          First name*
+                        </label>
+                        <input
+                          type="text"
+                          id="firstName"
+                          name="firstName"
+                          required
+                          value={formData.firstName}
+                          onChange={handleChange}
+                          className="w-full bg-zinc-950/80 border border-zinc-800/80 rounded-lg p-3 text-white focus:outline-none focus:border-white transition-colors font-sans"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="lastName" className="text-sm text-zinc-400 mb-1 block font-sans">
+                          Last name
+                        </label>
+                        <input
+                          type="text"
+                          id="lastName"
+                          name="lastName"
+                          value={formData.lastName}
+                          onChange={handleChange}
+                          className="w-full bg-zinc-950/80 border border-zinc-800/80 rounded-lg p-3 text-white focus:outline-none focus:border-white transition-colors font-sans"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Row 2: Email */}
+                    <div>
+                      <label htmlFor="email" className="text-sm text-zinc-400 mb-1 block font-sans">
+                        Email*
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        value={formData.email}
+                        onChange={handleChange}
+                        className="w-full bg-zinc-950/80 border border-zinc-800/80 rounded-lg p-3 text-white focus:outline-none focus:border-white transition-colors font-sans"
+                      />
+                    </div>
+
+                    {/* Row 3: Message */}
+                    <div>
+                      <label htmlFor="message" className="text-sm text-zinc-400 mb-1 block font-sans">
+                        What can we help you with?*
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        required
+                        rows={5}
+                        value={formData.message}
+                        onChange={handleChange}
+                        className="w-full bg-zinc-950/80 border border-zinc-800/80 rounded-lg p-3 text-white focus:outline-none focus:border-white transition-colors resize-none font-sans"
+                      />
+                    </div>
+
+                    {/* Submit Button */}
+                    <div className="flex justify-start pt-2">
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="bg-white text-black font-semibold px-6 py-2.5 rounded-lg hover:bg-zinc-200 disabled:opacity-50 transition-colors font-sans"
+                      >
+                        {isSubmitting ? 'Sending...' : 'Send Message'}
+                      </button>
+                    </div>
+                  </form>
+                )}
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Row 1: First name & Last name */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="firstName" className="text-sm text-zinc-400 mb-1 block font-sans">
-                      First name*
-                    </label>
-                    <input
-                      type="text"
-                      id="firstName"
-                      name="firstName"
-                      required
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      className="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-3 text-white focus:outline-none focus:border-white transition-colors font-sans"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="lastName" className="text-sm text-zinc-400 mb-1 block font-sans">
-                      Last name
-                    </label>
-                    <input
-                      type="text"
-                      id="lastName"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      className="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-3 text-white focus:outline-none focus:border-white transition-colors font-sans"
-                    />
-                  </div>
-                </div>
+            </div>
 
-                {/* Row 2: Email */}
-                <div>
-                  <label htmlFor="email" className="text-sm text-zinc-400 mb-1 block font-sans">
-                    Email*
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-3 text-white focus:outline-none focus:border-white transition-colors font-sans"
-                  />
-                </div>
-
-                {/* Row 3: Message */}
-                <div>
-                  <label htmlFor="message" className="text-sm text-zinc-400 mb-1 block font-sans">
-                    What can we help you with?*
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={5}
-                    value={formData.message}
-                    onChange={handleChange}
-                    className="w-full bg-zinc-950 border border-zinc-800 rounded-lg p-3 text-white focus:outline-none focus:border-white transition-colors resize-none font-sans"
-                  />
-                </div>
-
-                {/* Submit Button */}
-                <div className="flex justify-start">
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="bg-white text-black font-semibold px-8 py-3 rounded-lg hover:bg-zinc-200 disabled:opacity-50 transition-colors font-sans"
-                  >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </button>
-                </div>
-              </form>
-            )}
           </div>
         </div>
       </section>

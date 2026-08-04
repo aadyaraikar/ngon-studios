@@ -14,7 +14,7 @@ export default function Footer() {
       <div className="flex justify-start text-left max-w-7xl mx-auto w-full">
         <a
           href="mailto:contact@ngonstudios.com"
-          className="text-4xl md:text-5xl lg:text-6xl font-mono tracking-tighter leading-none hover:text-zinc-300 transition-colors uppercase block select-none"
+          className="text-2xl md:text-3xl lg:text-4xl font-mono tracking-tighter leading-none hover:text-zinc-300 transition-colors uppercase block select-none"
         >
           LET'S CONNECT.
         </a>
