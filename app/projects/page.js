@@ -176,13 +176,10 @@ export default function Projects() {
     <main className="min-h-screen bg-black text-white pt-24 px-6 md:px-12 relative no-scrollbar">
       
       {/* Header section */}
-      <div className="max-w-7xl mx-auto flex flex-col items-center text-center mb-16">
+      <div className="max-w-7xl mx-auto flex flex-col items-center text-center mb-5">
         <h1 className="text-5xl md:text-7xl mb-4 tracking-tighter uppercase font-mono font-normal">
           Our Works
         </h1>
-        <p className="text-lg md:text-xl font-medium text-zinc-300">
-          Check out some of our recent work.
-        </p>
       </div>
 
       {/* Grid section */}
