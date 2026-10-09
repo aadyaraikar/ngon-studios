@@ -10,6 +10,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-dm-sans);
   --font-mono: var(--font-teko);
+  --font-teko: var(--font-teko-source);
 }
 
 @media (prefers-color-scheme: dark) {

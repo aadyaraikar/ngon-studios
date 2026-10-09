@@ -10,7 +10,7 @@ const dmSans = DM_Sans({
 });
 
 const teko = Teko({
-  variable: "--font-teko",
+  variable: "--font-teko-source",
   subsets: ["latin"],
 });
 

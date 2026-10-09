@@ -3,7 +3,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Link from 'next/link';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,23 +35,68 @@ export default function About() {
   return (
     <main className="min-h-screen bg-black text-white relative">
       {/* Navigation spacer */}
-      <div className="h-24 md:h-32 w-full"></div>
+      <div className="h-16 md:h-20 w-full"></div>
       
-      <section ref={sectionRef} className="w-full py-32">
+      <section ref={sectionRef} className="w-full py-12">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="about-reveal-item text-5xl md:text-7xl font-mono text-white tracking-widest uppercase mb-12 font-normal">
+          <h2 className="about-reveal-item text-5xl md:text-7xl font-teko text-white tracking-wide uppercase mb-4 font-normal">
             About Us
           </h2>
-          <div className="space-y-8">
+          <div className="space-y-3">
             <p className="about-reveal-item text-zinc-400 leading-relaxed text-lg md:text-xl font-sans">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              NGON Studios is a multidisciplinary creative studio bringing together art, technology and storytelling to create bold visual experiences.
             </p>
             <p className="about-reveal-item text-zinc-400 leading-relaxed text-lg md:text-xl font-sans">
-              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              Working across 3D, VFX, animation, design and filmmaking, we turn ideas into worlds, stories and visuals that leave an impression. We&apos;re a collective of creators who believe in experimenting, pushing boundaries and constantly learning along the way.
             </p>
             <p className="about-reveal-item text-zinc-400 leading-relaxed text-lg md:text-xl font-sans">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+              From the first idea to the final frame, we&apos;re here to create what&apos;s next.
             </p>
+          </div>
+        </div>
+        <div className="max-w-4xl mx-auto px-6 mt-12">
+          <h2 className="about-reveal-item text-5xl md:text-7xl font-teko text-white tracking-wide uppercase mb-4 font-normal">
+            Find Us
+          </h2>
+
+          <div className="space-y-3">
+            <p className="about-reveal-item text-zinc-400 leading-relaxed text-lg md:text-xl font-sans">
+              Stay connected and see what we&apos;re creating.
+            </p>
+            <div className="about-reveal-item flex flex-wrap gap-x-8 gap-y-2">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-400 leading-relaxed text-lg md:text-xl font-sans transition-colors hover:text-white"
+              >
+                Instagram
+              </a>
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-400 leading-relaxed text-lg md:text-xl font-sans transition-colors hover:text-white"
+              >
+                YouTube
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-400 leading-relaxed text-lg md:text-xl font-sans transition-colors hover:text-white"
+              >
+                LinkedIn
+              </a>
+              <a
+                href="https://artstation.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-400 leading-relaxed text-lg md:text-xl font-sans transition-colors hover:text-white"
+              >
+                ArtStation
+              </a>
+            </div>
           </div>
         </div>
       </section>

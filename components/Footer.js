@@ -1,119 +1,63 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-
 export default function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <footer className="bg-black text-white pt-24 pb-8 px-6 md:px-12 relative z-30">
-      {/* Section 1: Typography CTA */}
-      <div className="flex justify-start text-left max-w-7xl mx-auto w-full">
-        <a
-          href="mailto:contact@ngonstudios.com"
-          className="text-2xl md:text-3xl lg:text-4xl font-mono tracking-tighter leading-none hover:text-zinc-300 transition-colors uppercase block select-none"
-        >
-          LET'S CONNECT.
-        </a>
-      </div>
-
-      {/* Section 2: 4-Column Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto my-20">
-        {/* Column 1: Logo & Tagline */}
-        <div className="flex flex-col gap-4">
-          <div className="flex items-center gap-3">
-            <Image
-              src="/images/logo white.png"
-              alt="NGON Studios Logo"
-              width={28}
-              height={28}
-              className="object-contain w-auto h-7"
-            />
-            <span className="text-xl font-mono tracking-tighter uppercase font-bold">
+    <footer className="w-full bg-black text-white px-8 py-10 md:px-16 border-t border-zinc-800/80">
+      <div className="max-w-7xl mx-auto space-y-12">
+        {/* Top Section */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+          {/* Left Column */}
+          <div className="space-y-3 max-w-2xl">
+            <h1 className="text-5xl font-teko  uppercase text-white">
               NGON STUDIOS
-            </span>
+            </h1>
+            <p className="text-zinc-300 text-lg leading-relaxed whitespace-normal md:whitespace-nowrap">
+              A creative studio exploring worlds between art, technology and storytelling.
+            </p>
+            <div>
+              <a
+                href="mailto:ngonstudios.indie@gmail.com"
+                className="text-zinc-300 text-lg hover:text-white transition-colors"
+              >
+                ngonstudios.indie@gmail.com
+              </a>
+            </div>
           </div>
-          <p className="text-base text-zinc-400 font-sans leading-relaxed max-w-xs">
-            A creative agency specializing in 3D animation, motion graphics, and visual effects. Bringing awe-inspiring stories to life.
-          </p>
+
+          {/* Right Column (Socials aligned with email) */}
+          <div className="flex flex-wrap gap-6 text-lg text-zinc-300">
+            <a href="#" className="hover:text-white transition-colors">
+              Instagram
+            </a>
+            <a href="#" className="hover:text-white transition-colors">
+              YouTube
+            </a>
+            <a href="#" className="hover:text-white transition-colors">
+              LinkedIn
+            </a>
+            <a href="#" className="hover:text-white transition-colors">
+              ArtStation
+            </a>
+          </div>
         </div>
 
-        {/* Column 2: Navigation */}
-        <div className="flex flex-col gap-3">
-          <h3 className="text-zinc-500 font-mono tracking-widest uppercase text-sm font-semibold mb-2">
-            Navigation
-          </h3>
-          <Link
-            href="/projects"
-            className="font-mono tracking-widest uppercase text-lg text-zinc-300 hover:text-white transition-colors w-fit"
+        {/* Bottom Section */}
+        <div className="flex justify-between items-end text-base">
+          <div>
+            <p className="text-zinc-300">© 2026 NGON Studios</p>
+            <p className="text-zinc-500 text-base mt-1">Made with curiosity.</p>
+          </div>
+          <button
+            onClick={scrollToTop}
+            className="text-base text-zinc-400 hover:text-white transition-colors cursor-pointer"
           >
-            Projects
-          </Link>
-          <Link
-            href="/about"
-            className="font-mono tracking-widest uppercase text-lg text-zinc-300 hover:text-white transition-colors w-fit"
-          >
-            About
-          </Link>
-          <Link
-            href="/contact"
-            className="font-mono tracking-widest uppercase text-lg text-zinc-300 hover:text-white transition-colors w-fit"
-          >
-            Contact Us
-          </Link>
+            back to top
+          </button>
         </div>
-
-        {/* Column 3: Socials */}
-        <div className="flex flex-col gap-3">
-          <h3 className="text-zinc-500 font-mono tracking-widest uppercase text-sm font-semibold mb-2">
-            Socials
-          </h3>
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-mono tracking-widest uppercase text-lg text-zinc-300 hover:text-white transition-colors w-fit"
-          >
-            Instagram
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-mono tracking-widest uppercase text-lg text-zinc-300 hover:text-white transition-colors w-fit"
-          >
-            LinkedIn
-          </a>
-        </div>
-
-        {/* Column 4: Get in touch */}
-        <div className="flex flex-col gap-3">
-          <h3 className="text-zinc-500 font-mono tracking-widest uppercase text-sm font-semibold mb-2">
-            Get in touch
-          </h3>
-          <a
-            href="mailto:contact@ngonstudios.com"
-            className="font-mono tracking-widest uppercase text-lg text-zinc-300 hover:text-white transition-colors w-fit break-all"
-          >
-            contact@ngonstudios.com
-          </a>
-        </div>
-      </div>
-
-      {/* Section 3: Bottom Bar */}
-      <div className="pt-8 mt-20 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-xs text-zinc-500 font-mono tracking-wider gap-4">
-        <span>
-          © {new Date().getFullYear()} NGON STUDIOS. ALL RIGHTS RESERVED.
-        </span>
-        <button
-          onClick={scrollToTop}
-          className="hover:text-white transition-colors uppercase flex items-center gap-1 cursor-pointer"
-        >
-          Back to Top ↑
-        </button>
       </div>
     </footer>
   );
