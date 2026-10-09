@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Link from 'next/link';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,7 +12,6 @@ export default function Contact() {
 
   const [formData, setFormData] = useState({
     firstName: '',
-    lastName: '',
     email: '',
     message: ''
   });
@@ -96,52 +94,26 @@ export default function Contact() {
   return (
     <main className="min-h-screen bg-black text-white relative">
       {/* Navigation spacer */}
-      <div className="h-20 md:h-28 w-full"></div>
+      <div className="h-16 md:h-20 w-full"></div>
       
-      <section ref={sectionRef} className="w-full py-16 md:py-24">
+      <section ref={sectionRef} className="w-full py-12 md:py-16">
         <div className="max-w-6xl mx-auto px-6">
           
           {/* Hero Title */}
-          <div className="text-center mb-16 md:mb-20">
-            <h1 className="contact-reveal-item text-4xl md:text-6xl text-white font-mono tracking-tight font-normal">
-              We would like to hear from you.
-            </h1>
+          <div className="text-left mb-8 md:mb-10">
+            <h2 className="about-reveal-item text-5xl md:text-7xl font-teko text-white tracking-wide uppercase mb-4 font-normal">
+            LET&apos;S CREATE SOMETHING.
+            </h2>
+            <p className="about-reveal-item text-zinc-400 leading-relaxed text-lg md:text-xl font-sans">
+              Have an idea, a project, or just something you want to explore?
+            </p>
+            <p className="about-reveal-item text-zinc-400 leading-relaxed text-lg md:text-xl font-sans">
+              We&apos;d love to hear about it. Tell us what you&apos;re working on, what you have in mind, and let&apos;s see where we can take it.
+            </p>
           </div>
 
-          {/* 2-Column Section: Socials (Left) & Send US a message (Right) */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
-            
-            {/* Left Column: Socials */}
-            <div className="md:col-span-5 flex flex-col space-y-8 pt-2">
-              <h2 className="contact-reveal-item text-3xl md:text-4xl text-white font-mono tracking-tight font-normal">
-                Socials
-              </h2>
-              <ul className="flex flex-col space-y-4">
-                <li className="contact-reveal-item">
-                  <a href="#" className="text-zinc-400 italic text-xl md:text-2xl font-sans hover:text-white transition-colors">
-                    Instagram
-                  </a>
-                </li>
-                <li className="contact-reveal-item">
-                  <a href="#" className="text-zinc-400 italic text-xl md:text-2xl font-sans hover:text-white transition-colors">
-                    Twitter/X
-                  </a>
-                </li>
-                <li className="contact-reveal-item">
-                  <a href="#" className="text-zinc-400 italic text-xl md:text-2xl font-sans hover:text-white transition-colors">
-                    LinkedIn
-                  </a>
-                </li>
-                <li className="contact-reveal-item">
-                  <a href="#" className="text-zinc-400 italic text-xl md:text-2xl font-sans hover:text-white transition-colors">
-                    Behance
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Right Column: Send US a message + Form */}
-            <div ref={formContainerRef} className="md:col-span-7 flex flex-col space-y-6">
+          {/* Send US a message + Form */}
+          <div ref={formContainerRef} className="w-full md:w-1/2 flex flex-col space-y-6">
               <h2 className="text-3xl md:text-4xl text-white font-mono tracking-tight font-normal">
                 Send US a message
               </h2>
@@ -157,41 +129,26 @@ export default function Contact() {
                     </p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    {/* Row 1: First name & Last name */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <label htmlFor="firstName" className="text-sm text-zinc-400 mb-1 block font-sans">
-                          First name*
-                        </label>
-                        <input
-                          type="text"
-                          id="firstName"
-                          name="firstName"
-                          required
-                          value={formData.firstName}
-                          onChange={handleChange}
-                          className="w-full bg-zinc-950/80 border border-zinc-800/80 rounded-lg p-3 text-white focus:outline-none focus:border-white transition-colors font-sans"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="lastName" className="text-sm text-zinc-400 mb-1 block font-sans">
-                          Last name
-                        </label>
-                        <input
-                          type="text"
-                          id="lastName"
-                          name="lastName"
-                          value={formData.lastName}
-                          onChange={handleChange}
-                          className="w-full bg-zinc-950/80 border border-zinc-800/80 rounded-lg p-3 text-white focus:outline-none focus:border-white transition-colors font-sans"
-                        />
-                      </div>
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    {/* Full name */}
+                    <div>
+                      <label htmlFor="firstName" className="text-lg text-zinc-300 mb-2 block italic font-sans">
+                        Full name*
+                      </label>
+                      <input
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        required
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        className="w-full bg-zinc-950/80 border border-zinc-800/80 rounded-lg p-3 text-white focus:outline-none focus:border-zinc-500 transition-colors font-sans"
+                      />
                     </div>
 
                     {/* Row 2: Email */}
                     <div>
-                      <label htmlFor="email" className="text-sm text-zinc-400 mb-1 block font-sans">
+                      <label htmlFor="email" className="text-lg text-zinc-300 mb-2 block italic font-sans">
                         Email*
                       </label>
                       <input
@@ -201,41 +158,46 @@ export default function Contact() {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full bg-zinc-950/80 border border-zinc-800/80 rounded-lg p-3 text-white focus:outline-none focus:border-white transition-colors font-sans"
+                        className="w-full bg-zinc-950/80 border border-zinc-800/80 rounded-lg p-3 text-white focus:outline-none focus:border-zinc-500 transition-colors font-sans"
                       />
                     </div>
 
                     {/* Row 3: Message */}
-                    <div>
-                      <label htmlFor="message" className="text-sm text-zinc-400 mb-1 block font-sans">
+                    <div className="relative">
+                      <label htmlFor="message" className="text-lg text-zinc-300 mb-2 block italic font-sans">
                         What can we help you with?*
                       </label>
                       <textarea
                         id="message"
                         name="message"
                         required
-                        rows={5}
+                        rows={4}
                         value={formData.message}
                         onChange={handleChange}
-                        className="w-full bg-zinc-950/80 border border-zinc-800/80 rounded-lg p-3 text-white focus:outline-none focus:border-white transition-colors resize-none font-sans"
+                        className="w-full min-h-20 bg-transparent border border-zinc-800/80 rounded-lg p-3 pr-14 text-white focus:outline-none focus:border-zinc-500 transition-colors resize-none font-sans"
                       />
-                    </div>
-
-                    {/* Submit Button */}
-                    <div className="flex justify-start pt-2">
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="no-glow bg-white text-black font-semibold px-6 py-2.5 rounded-lg hover:bg-zinc-200 disabled:opacity-50 transition-colors font-sans"
+                        aria-label={isSubmitting ? 'Sending message' : 'Send message'}
+                        className="no-glow absolute right-3 bottom-3 flex h-10 w-10 items-center justify-center rounded-full border border-zinc-400 text-zinc-300 hover:border-white hover:text-white disabled:opacity-50 transition-colors"
                       >
-                        {isSubmitting ? 'Sending...' : 'Send Message'}
+                        <svg
+                          aria-hidden="true"
+                          viewBox="0 0 24 24"
+                          className="h-5 w-5"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                        >
+                          <path d="M3 11.5 21 3l-8.5 18-2.5-7-7-2.5Z" />
+                          <path d="m10 14 5-5" />
+                        </svg>
                       </button>
                     </div>
                   </form>
                 )}
               </div>
-            </div>
-
           </div>
         </div>
       </section>
