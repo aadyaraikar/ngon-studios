@@ -101,24 +101,20 @@ export default function Contact() {
           
           {/* Hero Title */}
           <div className="text-left mb-8 md:mb-10">
-            <h2 className="about-reveal-item text-5xl md:text-7xl font-teko text-white tracking-wide uppercase mb-4 font-normal">
+            <h2 className="contact-reveal-item text-5xl md:text-7xl font-teko text-white tracking-wide uppercase mb-4 font-normal">
             LET&apos;S CREATE SOMETHING.
             </h2>
-            <p className="about-reveal-item text-zinc-400 leading-relaxed text-lg md:text-xl font-sans">
+            <p className="contact-reveal-item text-zinc-400 leading-relaxed text-lg md:text-xl font-sans">
               Have an idea, a project, or just something you want to explore?
             </p>
-            <p className="about-reveal-item text-zinc-400 leading-relaxed text-lg md:text-xl font-sans">
+            <p className="contact-reveal-item text-zinc-400 leading-relaxed text-lg md:text-xl font-sans">
               We&apos;d love to hear about it. Tell us what you&apos;re working on, what you have in mind, and let&apos;s see where we can take it.
             </p>
           </div>
 
           {/* Send US a message + Form */}
-          <div ref={formContainerRef} className="w-full md:w-1/2 flex flex-col space-y-6">
-              <h2 className="text-3xl md:text-4xl text-white font-mono tracking-tight font-normal">
-                Send US a message
-              </h2>
-
-              <div className="bg-zinc-900/40 p-8 rounded-2xl border border-zinc-800/80 shadow-2xl">
+          <div ref={formContainerRef} className="w-full md:w-1/2 flex flex-col">
+              <div className="bg-zinc-900/40 p-5 rounded-2xl border border-zinc-800/80 shadow-2xl">
                 {isSuccess ? (
                   <div className="text-center py-12">
                     <h3 className="text-3xl font-mono uppercase tracking-widest text-white mb-4">
@@ -129,10 +125,10 @@ export default function Contact() {
                     </p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
+                  <form onSubmit={handleSubmit} className="space-y-3">
                     {/* Full name */}
                     <div>
-                      <label htmlFor="firstName" className="text-lg text-zinc-300 mb-2 block italic font-sans">
+                      <label htmlFor="firstName" className="text-lg text-zinc-300 mb-1 block italic font-sans">
                         Full name*
                       </label>
                       <input
@@ -148,7 +144,7 @@ export default function Contact() {
 
                     {/* Row 2: Email */}
                     <div>
-                      <label htmlFor="email" className="text-lg text-zinc-300 mb-2 block italic font-sans">
+                      <label htmlFor="email" className="text-lg text-zinc-300 mb-1 block italic font-sans">
                         Email*
                       </label>
                       <input
@@ -164,7 +160,7 @@ export default function Contact() {
 
                     {/* Row 3: Message */}
                     <div className="relative">
-                      <label htmlFor="message" className="text-lg text-zinc-300 mb-2 block italic font-sans">
+                      <label htmlFor="message" className="text-lg text-zinc-300 mb-1 block italic font-sans">
                         What can we help you with?*
                       </label>
                       <textarea

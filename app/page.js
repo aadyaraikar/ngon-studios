@@ -10,8 +10,44 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
+  const [isShowreelMuted, setIsShowreelMuted] = useState(true);
   const videoContainerRef = useRef(null);
+  const showreelVideoRef = useRef(null);
   const mainRef = useRef(null);
+  const hasEnteredContentRef = useRef(false);
+  const isClampingScrollRef = useRef(false);
+
+  const toggleShowreelPlayback = () => {
+    const video = showreelVideoRef.current;
+    if (!video) return;
+
+    if (video.paused) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  };
+
+  const toggleShowreelMute = (event) => {
+    event.stopPropagation();
+    const video = showreelVideoRef.current;
+    if (!video) return;
+
+    video.muted = !video.muted;
+    setIsShowreelMuted(video.muted);
+  };
+
+  const toggleShowreelFullscreen = (event) => {
+    event.stopPropagation();
+    const video = showreelVideoRef.current;
+    if (!video) return;
+
+    if (document.fullscreenElement) {
+      document.exitFullscreen().catch(() => {});
+    } else {
+      video.requestFullscreen().catch(() => {});
+    }
+  };
 
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -79,6 +115,21 @@ export default function Home() {
         }
       });
 
+      // Showreel Title Animation
+      gsap.from('.showreel-title-fade', {
+        opacity: 0,
+        y: 80,
+        scale: 0.7,
+        transformOrigin: "center center",
+        duration: 1.8,
+        ease: 'expo.out',
+        scrollTrigger: {
+          trigger: '.showreel-title-fade',
+          start: 'top 85%',
+          once: true
+        }
+      });
+
       // 6. Projects Animation
       gsap.utils.toArray('.project-card').forEach((card) => {
         gsap.fromTo(card,
@@ -108,15 +159,49 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (window.location.hash === '#main-content') {
-      const element = document.getElementById('main-content');
+    const handleScroll = () => {
+      const heroSection = document.getElementById('about-studio');
+      if (!heroSection) {
+        return;
+      }
+
+      const heroTop = heroSection.getBoundingClientRect().top + window.scrollY;
+
+      if (window.scrollY > 10 && !hasEnteredContentRef.current) {
+        hasEnteredContentRef.current = true;
+        window.history.replaceState(null, '', '/#about-studio');
+      }
+
+      if (hasEnteredContentRef.current && window.scrollY < heroTop) {
+        if (isClampingScrollRef.current) return;
+
+        isClampingScrollRef.current = true;
+        window.scrollTo({ top: heroTop, behavior: 'smooth' });
+        return;
+      }
+
+      if (window.scrollY >= heroTop) {
+        isClampingScrollRef.current = false;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    if (window.location.hash === '#about-studio' || window.location.hash === '#main-content') {
+      const element = document.getElementById('about-studio');
       if (element) {
+        hasEnteredContentRef.current = true;
+        const elementTop = element.getBoundingClientRect().top + window.scrollY;
         window.scrollTo({
-          top: element.offsetTop,
+          top: elementTop,
           behavior: 'auto',
         });
       }
     }
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
@@ -164,10 +249,65 @@ export default function Home() {
           </div>
         </section>
 
+        {/* showreel */}
+        <section className="showreel-section relative z-30 bg-black w-full min-h-screen py-24 px-6 md:px-16 flex flex-col items-center justify-center snap-start">
+          <h2 className="showreel-title-fade mb-8 text-5xl md:text-7xl font-mono uppercase tracking-tighter text-center text-white">
+            Our Showreel
+          </h2>
+
+          <div className="relative w-full max-w-7xl mx-auto px-6 md:px-12 aspect-video md:aspect-21/9">
+            <video
+              ref={showreelVideoRef}
+              autoPlay
+              muted={isShowreelMuted}
+              loop
+              playsInline
+              onClick={toggleShowreelPlayback}
+              onCanPlay={(event) => event.currentTarget.play().catch(() => {})}
+              aria-label="NGON Studios showreel"
+              className="w-full h-full object-cover shadow-2xl"
+              src="/videos/showreel (demo).mp4"
+            />
+            <div className="absolute bottom-8 right-8 flex gap-2">
+              <button
+                type="button"
+                onClick={toggleShowreelMute}
+                aria-label={isShowreelMuted ? 'Unmute showreel' : 'Mute showreel'}
+                aria-pressed={isShowreelMuted}
+                className="no-glow flex h-9 w-9 items-center justify-center rounded-full bg-black/70 text-white transition-colors hover:bg-white hover:text-black"
+              >
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                  {isShowreelMuted ? (
+                    <>
+                      <path d="M11 5 6 9H3v6h3l5 4V5Z" />
+                      <path d="m17 9 4 6m0-6-4 6" />
+                    </>
+                  ) : (
+                    <>
+                      <path d="M11 5 6 9H3v6h3l5 4V5Z" />
+                      <path d="M15.5 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12" />
+                    </>
+                  )}
+                </svg>
+              </button>
+              <button
+                type="button"
+                onClick={toggleShowreelFullscreen}
+                aria-label="Enter fullscreen"
+                className="no-glow flex h-9 w-9 items-center justify-center rounded-full bg-black/70 text-white transition-colors hover:bg-white hover:text-black"
+              >
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7">
+                  <path d="M8 3H3v5M16 3h5v5M8 21H3v-5M21 16v5h-5" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </section>
+
         {/* upcoming projects */}
-        <section className="projects-section relative z-30 bg-black w-full min-h-screen py-32 px-6 md:px-16 flex flex-col items-center snap-start">
+        <section className="projects-section relative z-30 bg-black w-full min-h-screen py-24 px-6 md:px-16 flex flex-col items-center snap-start">
           {/* Heading */}
-          <h2 className="upcoming-title-fade mb-16 text-5xl md:text-7xl font-mono uppercase tracking-tighter text-center text-white">
+          <h2 className="upcoming-title-fade mb-8 text-5xl md:text-7xl font-mono uppercase tracking-tighter text-center text-white">
             Upcoming Projects
           </h2>
 

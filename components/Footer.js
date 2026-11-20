@@ -6,8 +6,8 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full bg-black text-white px-8 py-10 md:px-16 border-t border-zinc-800/80">
-      <div className="max-w-7xl mx-auto space-y-12">
+    <footer className="w-full bg-black text-white px-12 py-10 border-t border-zinc-800/80">
+      <div className="w-full space-y-12">
         {/* Top Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
           {/* Left Column */}

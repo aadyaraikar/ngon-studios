@@ -37,8 +37,8 @@ export default function About() {
       {/* Navigation spacer */}
       <div className="h-16 md:h-20 w-full"></div>
       
-      <section ref={sectionRef} className="w-full py-12">
-        <div className="max-w-4xl mx-auto px-6">
+      <section ref={sectionRef} className="w-full py-16 md:py-16">
+        <div className="max-w-6xl mx-auto px-6">
           <h2 className="about-reveal-item text-5xl md:text-7xl font-teko text-white tracking-wide uppercase mb-4 font-normal">
             About Us
           </h2>
@@ -54,7 +54,7 @@ export default function About() {
             </p>
           </div>
         </div>
-        <div className="max-w-4xl mx-auto px-6 mt-12">
+        <div className="max-w-6xl mx-auto px-6 mt-12">
           <h2 className="about-reveal-item text-5xl md:text-7xl font-teko text-white tracking-wide uppercase mb-4 font-normal">
             Find Us
           </h2>
